@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
+  <title>Dice Game</title>
+  <style>
+    /* white = #FFF9DE
+    orange = #FFD3B0
+    red = #FF6969
+    blue = #A6D0DD */
+
+    
+
+    html{
+      background-color:#FFD3B0;
+    }
+
+    .header{
+      /*border: 2px black solid;*/ 
+      height:30vh;
+      display:flex; 
+      justify-content: center; 
+      align-items:center; 
+    }
+
+    h1{
+      font-size:13rem; 
+      font-family: 'DM Serif Display', serif;
+      color: #FF6969; 
+    }
+
+    .main{
+      /*border:2px solid black;*/ 
+      height:50vh;  
+    }  
+
+    .footer{
+      /*border:2px solid black;*/
+      height:18vh;
+    }
+    
+    .players{
+      /*border:5px solid red;*/ 
+      height:15%;
+      display:flex; 
+      flex-direction:row; 
+    }
+    
+    .player{
+      /*border:5px solid orange;*/
+      width:50%;
+      height:90%;
+      display:flex; 
+      align-items:center; 
+    }
+
+    .containerH2{
+     /* border: 5px solid green;*/
+      width:200px;
+      display:flex; 
+      justify-content:center; 
+    }
+    
+    .container1{
+      margin-right:30px; 
+    }
+
+    .container2{
+      margin-left:30px; 
+    }
+
+    .player1{
+      justify-content:end;  
+    }
+
+    h2{
+      font-size:2rem;
+      font-family: 'DM Serif Display', serif;
+      color:#FF6969;
+    }
+
+    .dicesContainer{
+      /*border:5px solid orange;*/ 
+      height:37%;
+      display:flex; 
+      flex-direction:row; 
+
+
+    }
+
+    .diceLeft,.diceRight{
+     /* border:5px solid pink; */
+      height:100%; 
+      width:50%;
+      display: flex;   
+    }
+
+    .diceLeft{
+     justify-content:end;
+     margin-right:30px;  
+    }
+
+    .diceRight{
+      margin-left:30px; 
+    }
+
+    .dot{
+      background-color:#FFF9DE;
+      width:40px; 
+      height:40px; 
+      border-radius:100%;
+    }
+
+    .dice{
+      border: 5px solid #FFF9DE; 
+      height:200px; 
+      width:200px; 
+      border-radius:11%;
+      background-color:#A6D0DD;
+      cursor:pointer;
+    }
+
+
+   
+
+
+    .dice1{
+      display:none;
+      justify-content:center;
+      align-items: center;
+
+    }
+
+    .dice2{
+      display:none;
+      grid-template-rows:50% 50%;
+    }
+
+    .dice3{
+      display:none;
+      grid-template-rows: 33% 33% 33%;
+    }
+
+    .dice4{
+      display:none;
+      grid-template-rows: 50% 50%;
+    }
+
+    .dice5{
+      display:none;
+      grid-template-rows: 33% 33% 33%;
+    }
+
+    .dice6{
+      display:none;
+      grid-template-columns: 50% 50%; 
+    }
+    /* Left Dices */
+    .dice1Left{
+      display:flex;
+    }
+
+    .dice2Left{
+      display:none;
+    }
+
+    .dice3Left{
+      display:none;
+    }
+
+    .dice4Left{
+      display:none;
+    }
+
+    .dice5Left{
+      display:none;
+    }
+
+    .dice6Left{
+      display:none;
+    }
+    /* Right dices */
+    .dice1Right{
+      display:flex;
+    }
+
+    .dice2Right{
+      display:none;
+    }
+
+    .dice3Right{
+      display:none;
+    }
+
+    .dice4Right{
+      display:none;
+    }
+
+    .dice5Right{
+      display:none;
+    }
+
+    .dice6Right{
+      display:none;
+    }
+
+
+
+   
+
+    .containerDice{
+      /*border:5px solid black;*/
+      display:flex;
+      margin:20px;
+    }
+
+    .containerDice3{
+      flex-direction:row;
+
+    }
+
+    .containerDice4{
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    }
+
+    .containerDice6{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-around;
+      align-items:center;
+    }
+
+
+    .lowerContainer2 {
+      justify-content:end;
+      align-items:end;
+    }
+
+    .upperContainer3{
+      justify-content:end;
+      align-items:center;
+    }  
+
+    .middleContainer3{
+      justify-content: center;
+      align-items:center;
+    }
+
+    .lowerContainer3{
+      align-items:center;
+    }
+
+    .upperContainer5{
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .middleContainer5{
+      justify-content:center;
+      align-items:center;
+    }
+
+    .lowerContainer5{
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    
+
+    button{
+      width:200px; 
+      border-radius:50px;
+      height:60px;  
+    }
+
+
+    .button{
+      border:5px solid green;
+      height:15%;
+      display:flex; 
+      justify-content:center; 
+
+    }
+
+    @media(max-width:450px){
+      h1{
+        font-size:3rem;
+      }
+
+      .dice{
+        width:120px;
+        height:120px;
+      }
+
+      .dot{
+        width:25px;
+        height:25px;
+      }
+
+      .containerH2{
+        width:120px;
+      }
+
+      h2{
+        font-size:1.2rem;
+      }
+    }
+
+    @media(max-width:1250px){
+      h1{
+        font-size:4rem;
+      }
+
+      .dice{
+        width:120px;
+        height:120px;
+      }
+
+      .containerH2{
+        width:120px;
+      }
+
+      .dot{
+        width:25px;
+        height:25px;
+      }
+
+      h2{
+        font-size:1.6rem;
+      }
+    }
+
+</style>
+
+</head>
+
+<body>
+  <div class="header">
+    <h1>Roll The Dice!</h1>
+  </div>
+
+  <div class="main">
+
+    <div class="players">
+      <div class="player1 player">
+        <div class="containerH2 container1">
+          <h2> Player 1</h2>
+        </div>
+      </div>
+      <div class="player2 player">
+        <div class="containerH2 container2">
+          <h2> Player 2</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="dicesContainer">
+
+      <div class=" dices diceLeft">
+          <div class="dice dice1 dice1Left">
+            <div class="dot"></div>
+          </div>
+          <div class="dice dice2 dice2Left">
+            <div class="upperContainer2 containerDice"> <div class="dot"> </div> </div>
+            <div class="lowerContainer2 containerDice"> <div class="dot"></div> </div>
+          </div>
+          <div class="dice dice3 dice3Left">
+            <div class="upperContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+            <div class="middleContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+            <div class="lowerContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+          </div>
+
+          <div class="dice dice4 dice4Left">
+            <div class="uppercontainer4 containerDice containerDice4"> <div class="dot"></div> <div class="dot"></div> </div>
+            <div class="lowerContainer4 containerDice containerDice4"> <div class="dot"></div> <div class="dot"></div> </div>
+          </div>
+
+          <div class="dice dice5 dice5Left">
+            <div class="upperContainer5 containerDice containerDice5"> <div class="dot"></div> <div class="dot"></div> </div>
+            <div class="middleContainer5 containerDice containerDice5"> <div class="dot"></div> </div>
+            <div class="lowerContainer5 containerDice containerDice5"> <div class="dot"></div> <div class="dot"></div> </div>
+          </div>
+
+          <div class="dice dice6 dice6Left">
+            <div class="leftContainer containerDice containerDice6"> <div class="dot"></div> <div class="dot"></div> <div class="dot"></div> </div>
+            <div class="leftContainer containerDice containerDice6"> <div class="dot"></div> <div class="dot"></div> <div class="dot"></div> </div>
+          </div>
+
+        </div>
+    
+      <div class=" dices diceRight ">
+
+        <div class="dice dice1 dice1Right"> 
+          <div class="dot "></div>
+        </div>
+
+        <div class="dice dice2 dice2Right">
+          <div class="upperContainer2 containerDice"> <div class="dot"> </div> </div>
+          <div class="lowerContainer2 containerDice"> <div class="dot"></div> </div>
+        </div>
+
+        <div class="dice dice3 dice3Right">
+          <div class="upperContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+          <div class="middleContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+          <div class="lowerContainer3 containerDice containerDice3"> <div class="dot"></div> </div>
+        </div>
+
+       <div class="dice dice4 dice4Right">
+          <div class="uppercontainer4 containerDice containerDice4"> <div class="dot"></div> <div class="dot"></div> </div>
+          <div class="lowerContainer4 containerDice containerDice4"> <div class="dot"></div> <div class="dot"></div> </div>
+        </div>
+
+        <div class="dice dice5 dice5Right">
+          <div class="upperContainer5 containerDice containerDice5"> <div class="dot"></div> <div class="dot"></div> </div>
+          <div class="middleContainer5 containerDice containerDice5"> <div class="dot"></div> </div>
+          <div class="lowerContainer5 containerDice containerDice5"> <div class="dot"></div> <div class="dot"></div> </div>
+        </div>
+
+        <div class="dice dice6 dice6Right">
+          <div class="leftContainer containerDice containerDice6"> <div class="dot"></div> <div class="dot"></div> <div class="dot"></div> </div>
+          <div class="leftContainer containerDice containerDice6"> <div class="dot"></div> <div class="dot"></div> <div class="dot"></div> </div>
+        </div>
+      </div>
+</div>
+ 
+
+    <!--<div class="button">
+      <button>Roll the Dice!</button>
+    </div> -->
+  </div>
+  
+  <div class="footer"></div>
+
+  <script>
+
+ var theLeftDice = document.querySelector(".diceLeft");
+ var theRightDice = document.querySelector(".diceRight");
+ var title = document.querySelector("h1");
+
+ var dice1Left = document.querySelector(".dice1Left");
+ var dice2Left = document.querySelector(".dice2Left");
+ var dice3Left = document.querySelector(".dice3Left");
+ var dice4Left = document.querySelector(".dice4Left");
+ var dice5Left = document.querySelector(".dice5Left");
+ var dice6Left = document.querySelector(".dice6Left");
+
+ var dice1Right = document.querySelector(".dice1Right");
+ var dice2Right = document.querySelector(".dice2Right");
+ var dice3Right = document.querySelector(".dice3Right");
+ var dice4Right = document.querySelector(".dice4Right");
+ var dice5Right = document.querySelector(".dice5Right");
+ var dice6Right = document.querySelector(".dice6Right");
+
+ theLeftDice.addEventListener("click", game);
+ theRightDice.addEventListener("click", game);
+
+
+
+  function gameRightDice (diceRight){
+
+   diceRight = Math.random() * 6 + 1;
+   diceRight = Math.floor(diceRight);
+
+  if(diceRight === 1){
+    dice1Right.style.display = "flex";
+    dice2Right.style.display = "none";
+    dice3Right.style.display = "none";
+    dice4Right.style.display = "none";
+    dice5Right.style.display = "none";
+    dice6Right.style.display = "none";
+  }else if (diceRight === 2){
+
+    dice1Right.style.display = "none";
+    dice2Right.style.display = "grid";
+    dice3Right.style.display = "none";
+    dice4Right.style.display = "none";
+    dice5Right.style.display = "none";
+    dice6Right.style.display = "none";
+
+  }else if (diceRight === 3){
+
+    dice1Right.style.display = "none";
+    dice2Right.style.display = "none";
+    dice3Right.style.display = "grid";
+    dice4Right.style.display = "none";
+    dice5Right.style.display = "none";
+    dice6Right.style.display = "none";
+    
+  }else if (diceRight === 4){
+
+    dice1Right.style.display = "none";
+    dice2Right.style.display = "none";
+    dice3Right.style.display = "none";
+    dice4Right.style.display = "grid";
+    dice5Right.style.display = "none";
+    dice6Right.style.display = "none";
+    
+  }else if (diceRight === 5){
+
+    dice1Right.style.display = "none";
+    dice2Right.style.display = "none";
+    dice3Right.style.display = "none";
+    dice4Right.style.display = "none";
+    dice5Right.style.display = "grid";
+    dice6Right.style.display = "none";
+    
+  }else if (diceRight === 6){
+
+    dice1Right.style.display = "none";
+    dice2Right.style.display = "none";
+    dice3Right.style.display = "none";
+    dice4Right.style.display = "none";
+    dice5Right.style.display = "none";
+    dice6Right.style.display = "grid";
+    
+  }
+ 
+  return diceRight;
+  }
+
+ function gameLeftDice (diceLeft){
+
+  diceLeft = Math.random() * 6 + 1;
+  diceLeft = Math.floor(diceLeft);
+
+  if (diceLeft === 1){
+  dice1Left.style.display = "flex";
+  dice2Left.style.display = "none";
+  dice3Left.style.display = "none";
+  dice4Left.style.display = "none";
+  dice5Left.style.display = "none";
+  dice6Left.style.display = "none";
+  } else if (diceLeft === 2){
+  dice2Left.style.display = "grid";
+  dice1Left.style.display = "none";
+  dice3Left.style.display = "none";
+  dice4Left.style.display = "none";
+  dice5Left.style.display = "none";
+  dice6Left.style.display = "none";
+  }else if (diceLeft === 3){
+  dice3Left.style.display = "grid";
+  dice2Left.style.display = "none";
+  dice1Left.style.display = "none";
+  dice4Left.style.display = "none";
+  dice5Left.style.display = "none";
+  dice6Left.style.display = "none";
+  } else if (diceLeft === 4){
+  dice4Left.style.display = "grid";
+  dice2Left.style.display = "none";
+  dice3Left.style.display = "none";
+  dice1Left.style.display = "none";
+  dice5Left.style.display = "none";
+  dice6Left.style.display = "none";
+  }else if (diceLeft === 5){
+  dice5Left.style.display = "grid";
+  dice2Left.style.display = "none";
+  dice3Left.style.display = "none";
+  dice4Left.style.display = "none";
+  dice1Left.style.display = "none";
+  dice6Left.style.display = "none";
+  } else if (diceLeft === 6){
+  dice6Left.style.display = "grid";
+  dice2Left.style.display = "none";
+  dice3Left.style.display = "none";
+  dice4Left.style.display = "none";
+  dice5Left.style.display = "none";
+  dice1Left.style.display = "none";
+  }
+
+  return diceLeft;
+
+ }
+
+
+
+ function game (left,right){
+  left = gameLeftDice();
+   right = gameRightDice();
+
+   if(left > right){
+    title.innerHTML = "Player one wins!";
+   }else if (left < right){
+    title.innerHTML = "Player two wins!";
+   }else{
+    title.innerHTML = "it's a tie!";
+   }
+
+  console.log("left dice:" + left + "Right Dice:" + right);
+
+
+ }
+
+
+
+
+
+    
+  </script>
+</body>
+</html> 
